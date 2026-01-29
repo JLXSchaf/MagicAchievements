@@ -1,0 +1,6 @@
+@MagicAchievementsAPI_HostAddress = http://localhost:5188
+
+GET {{MagicAchievementsAPI_HostAddress}}/MagicAchievements/
+Accept: application/json
+
+###
