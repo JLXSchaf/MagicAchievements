@@ -24,7 +24,7 @@ namespace MagicAchievementsAPI.Controllers
             var path = Path.Combine(_env.WebRootPath, "data.txt");
             Console.WriteLine("Test", path);
             if (!System.IO.File.Exists(path)) {
-                return "Datei nicht gefunden";
+                System.IO.File.WriteAllText(path, "Testuser,1.1.1,");
             }
             return System.IO.File.ReadAllText(path);
         }
