@@ -1,12 +1,11 @@
 ﻿@using Components.Models;
-@page "/MagicAchievements"
+@page "/Spielerübersicht"
 @attribute [StreamRendering]
 
-<PageTitle>Magic Achievements</PageTitle>
 
-<h1>Hello, world!</h1>
+<h3>Spielerübersicht</h3>
 
-@if (MagicAchievementsCollection == null)
+@if (users == null)
 {
     <p><em>Loading...</em></p>
 }
@@ -24,13 +23,13 @@ else
             </tr>
         </thead>
         <tbody>
-            @foreach (var MagicAchievement in MagicAchievementsCollection)
+            @foreach (var user in users)
             {
                 <tr>
-                    <td>@MagicAchievement.Name</td>
-                    <td>@MagicAchievement.Bild</td>
-                    <td>@MagicAchievement.Punktzahl</td>
-                    <td>@MagicAchievement.Anforderungen</td>
+                    <td>@user.Name</td>
+                    <td>@user.CreatedOn</td>
+                    <td>@user.Achievements</td>
+                    <td>@user.Achievementpoints</td>
                 </tr>
             }
         </tbody>
@@ -38,6 +37,5 @@ else
 }
 
 @code {
-    private MagicAchievement[]? MagicAchievementsCollection;
-
+    private User[]? users;
 }
