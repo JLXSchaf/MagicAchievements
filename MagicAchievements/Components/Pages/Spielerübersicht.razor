@@ -37,5 +37,34 @@ else
 }
 
 @code {
-    private User[]? users;
+    //private User[]? users;
+
+    protected override async Task OnInitializedAsync()
+    {
+        // Simulate asynchronous loading to demonstrate streaming rendering
+        await Task.Delay(500);
+
+        TestUser user = new TestUser
+            {
+                Name = "Testnutzer",
+                CreatedOn = DateOnly.FromDateTime(DateTime.Now),
+                Achievements = [],
+                Achievementpoints = 69
+            };
+    }
+
+    public class TestUser
+    {
+        public required String Name { get; set; }
+        public DateOnly CreatedOn { get; set; }
+        public MagicAchievement[]? Achievements { get; set; }
+        public int Achievementpoints { get; set; }
+    }
+    TestUser[] users = [new TestUser
+            {
+                Name = "Testnutzer",
+                CreatedOn = DateOnly.FromDateTime(DateTime.Now),
+                Achievements = [],
+                Achievementpoints = 69
+            }];
 }
