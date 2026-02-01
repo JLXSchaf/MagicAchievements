@@ -6,5 +6,12 @@
         public int? Bild { get; set; }
         public required int Punktzahl { get; set; }
         public required String Anforderungen { get; set; }
+
+        //implement
+        public static String Parse( String s)
+        {
+            String Name = s;
+            return Name;
+        }
     }
 }

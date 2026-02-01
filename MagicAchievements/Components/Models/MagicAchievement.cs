@@ -6,5 +6,6 @@
         public int? Bild { get; set; }
         public required int Punktzahl { get; set; }
         public required String Anforderungen { get; set; }
+
     }
 }

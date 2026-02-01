@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -16,12 +17,14 @@ namespace MagicAchievementsAPI.Controllers
             _env = env;
         }
 
-        // GET: api/<MagicAchievementsController>
+        // GET: api/<UserController>
         [HttpGet]
         public string Get()
         {
             // C:\Users\janni\source\repos\MagicAchievements\MagicAchievementsAPI
             var path = Path.Combine(_env.WebRootPath, "data.txt");
+            Debug.WriteLine(path.GetType());
+            var a = path.GetType();
             if (!System.IO.File.Exists(path))
             {
                 System.IO.File.WriteAllText(path, "Testuser,1.1.1,");
@@ -29,7 +32,7 @@ namespace MagicAchievementsAPI.Controllers
             return System.IO.File.ReadAllText(path);
         }
 
-        // GET api/<UserController>/5
+        // GET api/<UserController>/id
         [HttpGet("{id}")]
         public string Get(int id)
         {
