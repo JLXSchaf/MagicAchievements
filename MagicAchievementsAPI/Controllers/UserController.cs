@@ -23,8 +23,7 @@ namespace MagicAchievementsAPI.Controllers
         {
             // C:\Users\janni\source\repos\MagicAchievements\MagicAchievementsAPI
             var path = Path.Combine(_env.WebRootPath, "data.txt");
-            Debug.WriteLine(path.GetType());
-            var a = path.GetType();
+
             if (!System.IO.File.Exists(path))
             {
                 System.IO.File.WriteAllText(path, "Testuser,1.1.1,");

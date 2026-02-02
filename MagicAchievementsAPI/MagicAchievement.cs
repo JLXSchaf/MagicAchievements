@@ -1,17 +1,14 @@
-﻿namespace MagicAchievementsAPI
+﻿using MagicAchievementsAPI;
+using System.Reflection.Metadata.Ecma335;
+
+namespace MagicAchievementsAPI
 {
     public class MagicAchievement
     {
         public required String Name { get; set; }
-        public int? Bild { get; set; }
+        public String? Bild { get; set; }
         public required int Punktzahl { get; set; }
         public required String Anforderungen { get; set; }
 
-        //implement
-        public static String Parse( String s)
-        {
-            String Name = s;
-            return Name;
-        }
     }
 }
