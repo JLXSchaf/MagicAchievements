@@ -22,53 +22,71 @@
             return data;
         }
 
-        public List<User> UserListParse(string s)
+        public List<User> UserListParse(string userliststring)
         {
             List<User> newUserList = new List<User>();
-            String[] sa = s.Split(';');
-            foreach (String us in sa)
+            String[] userlistarray = userliststring.Split(';');
+            foreach (String us in userlistarray)
             {
                 newUserList.Add(UserParse(us));
             }
             return newUserList;
         }
 
-        public User UserParse(string s)
+        public User UserParse(string userstring)
         {
-            String[] sa = s.Split(",");
+            String[] userarray = userstring.Split(",");
             User newAch = new User
             {
-                Name = sa[0],
-                CreatedOn = DateOnly.Parse(sa[1]),
-                Achievements = MagicAchievementListParse(sa[2]),
-                Achievementpoints = int.Parse(sa[3])
+                Name = userarray[0],
+                CreatedOn = DateOnly.Parse(userarray[1]),
+                Achievements = MagicAchievementListParse(userarray[2]),
+                Achievementpoints = int.Parse(userarray[3])
             };
 
             return newAch;
         }
 
 
-        public List<MagicAchievement> MagicAchievementListParse(String s)
+        public List<User> GetAchievementsData(String path)
+        {
+            // If none exist, create database 
+            if (!System.IO.File.Exists(path))
+            {
+                System.IO.File.WriteAllText(path, "");
+                return [];
+            }
+            return ReadAchievementsData(path);
+        }
+
+        public List<MagicAchievement> ReadAchievementsData(String path)
+        {
+            String rawData = System.IO.File.ReadAllText(path);
+            List<MagicAchievement> mdata = MagicAchievementListParse(rawData);
+            return mdata;
+        }
+
+        public List<MagicAchievement> MagicAchievementListParse(String achievmentsString)
         {
             List<MagicAchievement> newAchList = new List<MagicAchievement>();
-            String[] sa = s.Split('/');
-            foreach (String ma in sa)
+            String[] achievementsStringArray = achievmentsString.Split('/');
+            foreach (String magicAchievement in achievementsStringArray)
             {
-                newAchList.Add(MagicAchievementParse(ma));
+                newAchList.Add(MagicAchievementParse(magicAchievement));
             }
             return newAchList;
 
         }
 
-        public MagicAchievement MagicAchievementParse(string s)
+        public MagicAchievement MagicAchievementParse(string magicAchievementString)
         {
-            String[] sa = s.Split("/");
+            String[] magicAchievementStringArray = magicAchievementString.Split("/");
             MagicAchievement newAch = new MagicAchievement
             {
-                Name = sa[0],
-                Bild = sa[1],
-                Punktzahl = int.Parse(sa[2]),
-                Anforderungen = sa[3]
+                Name = magicAchievementStringArray[0],
+                Bild = magicAchievementStringArray[1],
+                Punktzahl = int.Parse(magicAchievementStringArray[2]),
+                Anforderungen = magicAchievementStringArray[3]
             };
 
             return newAch;
