@@ -40,15 +40,45 @@
             {
                 Name = userarray[0],
                 CreatedOn = DateOnly.Parse(userarray[1]),
-                Achievements = MagicAchievementListParse(userarray[2]),
+                CollectedAchievements = AquiredAchievementsListParse(userarray[2]),
                 Achievementpoints = int.Parse(userarray[3])
             };
 
             return newAch;
         }
 
+        public List<AquiredAchievement> AquiredAchievementsListParse(String aqString)
+        {
+            List<AquiredAchievement> data = new List<AquiredAchievement>();
+            String[] aqStringArray = aqString.Split("|");
+            foreach(String cAString in aqStringArray)
+            {
+                data.Add(AquiredAchievementParse(cAString));
+            }
+            return data;
+        }
 
-        public List<User> GetAchievementsData(String path)
+        public AquiredAchievement AquiredAchievementParse(String aqString)
+        {
+            String[] aqStringArray = aqString.Split(",");
+
+            return AquiredAchievementParse(aqStringArray);
+
+        }
+
+        public AquiredAchievement AquiredAchievementParse(String[] aqStringArray)
+        {
+            return new AquiredAchievement
+            {
+                Name = aqStringArray[0],
+                AquiredWhen = DateOnly.Parse(aqStringArray[1]),
+                AquiredWith = aqStringArray[2],
+                Points = int.Parse(aqStringArray[3])
+            };
+        }
+
+
+        public List<MagicAchievement> GetAchievementsData(String path)
         {
             // If none exist, create database 
             if (!System.IO.File.Exists(path))
