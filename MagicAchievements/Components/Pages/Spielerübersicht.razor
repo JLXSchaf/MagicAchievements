@@ -1,4 +1,10 @@
 ﻿@using Components.Models;
+@using Interface;
+@using System;
+@using System.Collections.Generic;
+@using System.Net.Http;
+@using System.Net.Http.Headers;
+@inject IAppSettings State;
 @page "/Spielerübersicht"
 @attribute [StreamRendering]
 
@@ -37,7 +43,14 @@ else
 }
 
 @code {
-    //private User[]? users;
+    /*
+    public class UserList(IAppSettings state)
+    {
+        HttpClient client = new HttpClient();
+        client.baseAddress = new Uri(state.ApiUserData);
+
+    }
+    */
 
     protected override async Task OnInitializedAsync()
     {

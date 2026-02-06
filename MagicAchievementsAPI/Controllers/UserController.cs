@@ -19,7 +19,7 @@ namespace MagicAchievementsAPI.Controllers
 
         // GET: api/<UserController>
         [HttpGet]
-        public string Get()
+        public string GetAllUsers()
         {
             // C:\Users\janni\source\repos\MagicAchievements\MagicAchievementsAPI
             var path = Path.Combine(_env.WebRootPath, "data.txt");
